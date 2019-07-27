@@ -66,6 +66,10 @@ class ThoughtList extends Component {
         this.loadThoughtList();
     }
 
+    componentWillUnmount() {
+        this.loadThoughtList();
+    }
+
     componentDidUpdate(nextProps) {
         if(this.props.isAuthenticated !== nextProps.isAuthenticated) {
             // Reset State

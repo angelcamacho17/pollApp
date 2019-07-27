@@ -9,6 +9,7 @@ import {
 import { getCurrentUser } from '../util/APIUtils';
 import { ACCESS_TOKEN } from '../constants';
 import PollList from '../poll/PollList';
+import ThoughtList from '../thought/ThoughtList';
 import NewPoll from '../poll/NewPoll';
 import Login from '../user/login/Login';
 import Signup from '../user/signup/Signup';
@@ -64,6 +65,10 @@ class App extends Component {
     this.loadCurrentUser();
   }
 
+  componentWillUnmount() {
+    this.loadCurrentUser();
+  }
+
   handleLogout(redirectTo="/", notificationType="success", description="You're successfully logged out.") {
     localStorage.removeItem(ACCESS_TOKEN);
 
@@ -102,7 +107,11 @@ class App extends Component {
           <Content className="app-content">
             <div className="container">
               <Switch>
-                <Route exact path="/" 
+              <Route exact path="/" 
+                  render={(props) => <ThoughtList isAuthenticated={this.state.isAuthenticated} 
+                      currentUser={this.state.currentUser} handleLogout={this.handleLogout} {...props} />}>
+                </Route>
+                <Route path="/polls" 
                   render={(props) => <PollList isAuthenticated={this.state.isAuthenticated} 
                       currentUser={this.state.currentUser} handleLogout={this.handleLogout} {...props} />}>
                 </Route>
@@ -116,7 +125,6 @@ class App extends Component {
                 </Route>
 
                 <PrivateRoute authenticated={this.state.isAuthenticated} path="/poll/new" component={NewPoll} handleLogout={this.handleLogout}></PrivateRoute>
-                <Route component={NotFound}></Route>
 
                 <PrivateRoute authenticated={this.state.isAuthenticated} path="/thought/new" component={NewThought} handleLogout={this.handleLogout}></PrivateRoute>
                 <Route component={NotFound}></Route>

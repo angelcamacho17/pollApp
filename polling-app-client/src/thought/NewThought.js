@@ -50,9 +50,10 @@ class NewThought extends Component {
 
 
     isFormInvalid() {
-        if(this.state.message.validateStatus !== 'success') {
-            return true;
+        if(this.state.message.text !== '') {
+            return false;
         }
+        return true;
     }
 
     render() {
@@ -67,7 +68,7 @@ class NewThought extends Component {
                         <FormItem validateStatus={this.state.message.validateStatus}
                                   help={this.state.message.errorMsg} className="poll-form-row">
                             <TextArea
-                                placeholder="Enter your message"
+                                placeholder="What are you thinking?"
                                 style = {{ fontSize: '16px' }}
                                 autosize={{ minRows: 3, maxRows: 6 }}
                                 name = "message"
@@ -79,7 +80,7 @@ class NewThought extends Component {
                                     htmlType="submit"
                                     size="large"
                                     disabled={this.isFormInvalid()}
-                                    className="create-poll-form-button">Create Thought</Button>
+                                    className="create-poll-form-button">Share</Button>
                         </FormItem>
                     </Form>
                 </div>

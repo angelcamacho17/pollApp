@@ -59,11 +59,4 @@ public class ThoughtController {
         return thoughtService.getThoughtById(thoughtId, currentUser);
     }
     
-    /*@PostMapping("/{thoughtId}/votes")
-    @PreAuthorize("hasRole('USER')")
-    public PollResponse castVote(@CurrentUser UserPrincipal currentUser,
-                                 @PathVariable Long pollId,
-                                 @Valid @RequestBody VoteRequest voteRequest) {
-        return pollService.castVoteAndGetUpdatedPoll(pollId, voteRequest, currentUser);
-    }*/
 }

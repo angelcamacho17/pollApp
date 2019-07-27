@@ -2,13 +2,16 @@ import React, { Component } from 'react';
 import PollList from '../../poll/PollList';
 import ThoughtList from '../../thought/ThoughtList';
 import { getUserProfile } from '../../util/APIUtils';
-import { Avatar, Tabs } from 'antd';
+import { Avatar, Tabs, Layout } from 'antd';
 import { getAvatarColor } from '../../util/Colors';
 import { formatDate } from '../../util/Helpers';
 import LoadingIndicator  from '../../common/LoadingIndicator';
 import './Profile.css';
 import NotFound from '../../common/NotFound';
 import ServerError from '../../common/ServerError';
+import ProfileHeader from './ProfileHeader';
+
+const { Content } = Layout;
 
 const TabPane = Tabs.TabPane;
 
@@ -80,7 +83,12 @@ class Profile extends Component {
             <div className="profile">
                 { 
                     this.state.user ? (
-                        <div className="user-profile">
+                        <Layout className="app-container">
+                        <ProfileHeader isAuthenticated={this.state.isAuthenticated} 
+                            currentUser={this.state.user} 
+                            onLogout={this.handleLogout} />
+                        <Content className="app-content">
+                            
                             <div className="user-details">
                                 <div className="user-avatar">
                                     <Avatar className="user-avatar-circle" style={{ backgroundColor: getAvatarColor(this.state.user.name)}}>
@@ -112,7 +120,8 @@ class Profile extends Component {
                                     </TabPane>
                                 </Tabs>
                             </div>
-                        </div>
+                        </Content>
+                        </Layout>
                     ): null               
                 }
             </div>

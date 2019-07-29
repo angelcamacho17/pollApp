@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import './Profile.css';
-import {Icon, Dropdown} from 'antd';
 import NewPoll from '../../poll/NewPoll';
 import ReactDOM from 'react-dom';
 import NewThought from '../../thought/NewThought';
 import {
     Link
 } from 'react-router-dom';
-import { Layout, Menu } from 'antd';
-const Header = Layout.Header;
+import { Layout, Menu, Icon} from 'antd';
+const { SubMenu } = Menu;
+const { Header } = Layout;
 
 class ProfileHeader extends Component {
     constructor(props){
@@ -32,26 +32,29 @@ class ProfileHeader extends Component {
 
     render() {
         return (
-            <Header className="app-header">
+            <Header width={200} style={{ background: '#fff' }}>
                 <div id={"dumm"}></div>
                 <div id={"dumm2"}></div>
-            <div className="container">
-              <div className="app-title" >
-                <Link to="/">{this.props.currentUser.name}</Link>
-              </div>
-              <Menu
-                className="app-menu"
-                mode="horizontal"
-                onClick={this.handleMenuClick}
-                style={{ lineHeight: '64px' }} >
-                  <Menu.Item key="newPoll" className="dropdown-item" >
-                      New poll
-                  </Menu.Item>
-                  <Menu.Item key="newThought" className="dropdown-item" >
-                      New Thought
-                  </Menu.Item>
-              </Menu>
-            </div>
+                <Menu
+                    className="app-menu"
+                    onClick={this.handleMenuClick}
+                    mode="inline"
+                    defaultSelectedKeys={['1']}
+                    style={{ height: 150, borderRight: 0 }}
+                >
+                    <SubMenu
+                        key="sub1"
+                        title={
+                            <span>
+                    <Icon type="user" />
+                                {this.props.currentUser.name}
+                         </span>
+                        }
+                    >
+                        <Menu.Item key="newPoll">New Poll</Menu.Item>
+                        <Menu.Item  key="newThought">New Thought</Menu.Item>
+                    </SubMenu>
+                </Menu>
           </Header>
         );
     }

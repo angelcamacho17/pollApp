@@ -99,7 +99,7 @@ class ThoughtList extends Component {
         });
 
         return (
-            <div className="polls-container">
+            <div id={'thoughtList'} className="polls-container">
                 {thoughtViews}
                 {
                     !this.state.isLoading && this.state.thoughts.length === 0 ? (

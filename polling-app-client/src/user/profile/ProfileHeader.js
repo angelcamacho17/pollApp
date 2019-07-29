@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import './Profile.css';
-import { Icon } from 'antd';
-import pollIcon from '../../poll.svg';
+import {Icon, Dropdown} from 'antd';
+import NewPoll from '../../poll/NewPoll';
+import ReactDOM from 'react-dom';
+import NewThought from '../../thought/NewThought';
 import {
     Link
 } from 'react-router-dom';
@@ -11,11 +13,29 @@ const Header = Layout.Header;
 class ProfileHeader extends Component {
     constructor(props){
         super(props);
+        this.state={
+            newPoll:true,
+            newThought:false
+        }
+        this.handleMenuClick = this.handleMenuClick.bind(this);
     }
+
+    handleMenuClick({ key }) {
+        if(key === "newPoll") {
+            let newP = ReactDOM.render(<NewPoll {...this.props}/>,document.getElementById('dumm') );
+        }
+        if(key === "newThought") {
+            console.log("1 " +this.state);
+            let newT = ReactDOM.render(<NewThought {...this.props}/>,document.getElementById('dumm2') );
+        }
+
+    }
+
     render() {
-        console.log(this.props.currentUser);
         return (
             <Header className="app-header">
+                <div id={"dumm"}></div>
+                <div id={"dumm2"}></div>
             <div className="container">
               <div className="app-title" >
                 <Link to="/">{this.props.currentUser.name}</Link>
@@ -26,7 +46,7 @@ class ProfileHeader extends Component {
                 style={{ lineHeight: '64px' }} >
                 <Menu.Item key="/profile" className="profile-menu">
                     <NewDropdownMenu 
-                    currentUser={this.props.currentUser} 
+                    currentUser={this.props.currentUser}
                     handleMenuClick={this.handleMenuClick}/>
                 </Menu.Item>
               </Menu>
@@ -39,17 +59,17 @@ class ProfileHeader extends Component {
 function NewDropdownMenu(props) {
     const dropdownMenu = (
       <Menu onClick={props.handleMenuClick} className="profile-dropdown-menu">
-        <Menu.Item key="profile" className="dropdown-item">
-          <Link to="">New poll</Link>
+        <Menu.Item key="newPoll" className="dropdown-item" >
+          New poll
         </Menu.Item>
-        <Menu.Item key="logout" className="dropdown-item">
-          Logout
+        <Menu.Item key="newThought" className="dropdown-item" >
+          New Thought
         </Menu.Item>
       </Menu>
     );
   
     return (
-      <Dropdown 
+      <Dropdown
         overlay={dropdownMenu} 
         trigger={['click']}
         getPopupContainer = { () => document.getElementsByClassName('profile-menu')[0]}>

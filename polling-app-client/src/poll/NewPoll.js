@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { createPoll } from '../util/APIUtils';
+import {createPoll, getCurrentUser} from '../util/APIUtils';
 import { MAX_CHOICES, POLL_QUESTION_MAX_LENGTH, POLL_CHOICE_MAX_LENGTH } from '../constants';
 import './NewPoll.css';  
-import { Form, Input, Button, Icon, Select, Col, notification } from 'antd';
+import { Form, Input, Button, Icon, Select, Col, notification, Modal } from 'antd';
+import { browserHistory } from 'react-router';
 const Option = Select.Option;
 const FormItem = Form.Item;
 const { TextArea } = Input
@@ -14,6 +15,7 @@ class NewPoll extends Component {
             question: {
                 text: ''
             },
+            visible:false,
             choices: [{
                 text: ''
             }, {
@@ -34,6 +36,27 @@ class NewPoll extends Component {
         this.handlePollHoursChange = this.handlePollHoursChange.bind(this);
         this.handlePollMinutesChange = this.handlePollMinutesChange.bind(this);
         this.isFormInvalid = this.isFormInvalid.bind(this);
+        this.showModal = this.showModal.bind(this);
+        this.handleOk = this.handleOk.bind(this);
+        this.handleCancel = this.handleCancel.bind(this);
+    }
+
+    showModal(){
+        this.setState({
+            visible: true,
+        });
+    }
+
+    handleOk(){
+        this.setState({
+            visible: false,
+        });
+    }
+
+    handleCancel(){
+        this.setState({
+            visible: false,
+        });
     }
 
     addChoice(event) {
@@ -64,7 +87,8 @@ class NewPoll extends Component {
 
         createPoll(pollData)
         .then(response => {
-            this.props.history.push("/");
+            console.log(this);
+            browserHistory.push('/users/'+this.props.currentUser.username);
         }).catch(error => {
             if(error.status === 401) {
                 this.props.handleLogout('/login', 'error', 'You have been logged out. Please login create poll.');    
@@ -75,6 +99,7 @@ class NewPoll extends Component {
                 });              
             }
         });
+        this.handleOk();
     }
 
     validateQuestion = (questionText) => {
@@ -174,6 +199,10 @@ class NewPoll extends Component {
         }
     }
 
+    componentDidMount() {
+        this.showModal();
+    }
+
     render() {
         const choiceViews = [];
         this.state.choices.forEach((choice, index) => {
@@ -181,16 +210,20 @@ class NewPoll extends Component {
         });
 
         return (
-            <div className="new-poll-container">
-                <h1 className="page-title">Create Poll</h1>
-                <div className="new-poll-content">
+
+            <Modal
+                title="New Poll"
+                visible={this.state.visible}
+                onOk={this.handleOk}
+                onCancel={this.handleCancel}
+            >
                     <Form onSubmit={this.handleSubmit} className="create-poll-form">
                         <FormItem validateStatus={this.state.question.validateStatus}
                             help={this.state.question.errorMsg} className="poll-form-row">
-                        <TextArea 
+                        <TextArea
                             placeholder="Enter your question"
-                            style = {{ fontSize: '16px' }} 
-                            autosize={{ minRows: 3, maxRows: 6 }} 
+                            style = {{ fontSize: '16px' }}
+                            autosize={{ minRows: 3, maxRows: 6 }}
                             name = "question"
                             value = {this.state.question.text}
                             onChange = {this.handleQuestionChange} />
@@ -203,33 +236,33 @@ class NewPoll extends Component {
                         </FormItem>
                         <FormItem className="poll-form-row">
                             <Col xs={24} sm={4}>
-                                Poll length: 
+                                Poll length:
                             </Col>
-                            <Col xs={24} sm={20}>    
+                            <Col xs={24} sm={20}>
                                 <span style = {{ marginRight: '18px' }}>
-                                    <Select 
+                                    <Select
                                         name="days"
-                                        defaultValue="1" 
+                                        defaultValue="1"
                                         onChange={this.handlePollDaysChange}
                                         value={this.state.pollLength.days}
                                         style={{ width: 60 }} >
                                         {
-                                            Array.from(Array(8).keys()).map(i => 
-                                                <Option key={i}>{i}</Option>                                        
+                                            Array.from(Array(8).keys()).map(i =>
+                                                <Option key={i}>{i}</Option>
                                             )
                                         }
                                     </Select> &nbsp;Days
                                 </span>
                                 <span>
-                                    <Select 
+                                    <Select
                                         name="hours"
-                                        defaultValue="0" 
+                                        defaultValue="0"
                                         onChange={this.handlePollHoursChange}
                                         value={this.state.pollLength.hours}
                                         style={{ width: 60 }} >
                                         {
-                                            Array.from(Array(24).keys()).map(i => 
-                                                <Option key={i}>{i}</Option>                                        
+                                            Array.from(Array(24).keys()).map(i =>
+                                                <Option key={i}>{i}</Option>
                                             )
                                         }
                                     </Select> &nbsp;Hours
@@ -251,15 +284,14 @@ class NewPoll extends Component {
                             </Col>
                         </FormItem>
                         <FormItem className="poll-form-row">
-                            <Button type="primary" 
-                                htmlType="submit" 
-                                size="large" 
+                            <Button type="primary"
+                                htmlType="submit"
+                                size="large"
                                 disabled={this.isFormInvalid()}
                                 className="create-poll-form-button">Create Poll</Button>
                         </FormItem>
                     </Form>
-                </div>    
-            </div>
+            </Modal>
         );
     }
 }

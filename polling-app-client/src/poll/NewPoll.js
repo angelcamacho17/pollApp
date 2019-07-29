@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import {createPoll, getCurrentUser} from '../util/APIUtils';
+import { createPoll } from '../util/APIUtils';
 import { MAX_CHOICES, POLL_QUESTION_MAX_LENGTH, POLL_CHOICE_MAX_LENGTH } from '../constants';
 import './NewPoll.css';  
 import { Form, Input, Button, Icon, Select, Col, notification, Modal } from 'antd';
-import { browserHistory } from 'react-router';
 const Option = Select.Option;
 const FormItem = Form.Item;
 const { TextArea } = Input
@@ -87,8 +86,7 @@ class NewPoll extends Component {
 
         createPoll(pollData)
         .then(response => {
-            console.log(this);
-            browserHistory.push('/users/'+this.props.currentUser.username);
+            this.props.history.push("/polls");
         }).catch(error => {
             if(error.status === 401) {
                 this.props.handleLogout('/login', 'error', 'You have been logged out. Please login create poll.');    
@@ -99,7 +97,6 @@ class NewPoll extends Component {
                 });              
             }
         });
-        this.handleOk();
     }
 
     validateQuestion = (questionText) => {
@@ -217,6 +214,8 @@ class NewPoll extends Component {
                 onOk={this.handleOk}
                 onCancel={this.handleCancel}
             >
+                <h1 className="page-title">Create Poll</h1>
+                <div className="new-poll-content">
                     <Form onSubmit={this.handleSubmit} className="create-poll-form">
                         <FormItem validateStatus={this.state.question.validateStatus}
                             help={this.state.question.errorMsg} className="poll-form-row">
@@ -291,6 +290,7 @@ class NewPoll extends Component {
                                 className="create-poll-form-button">Create Poll</Button>
                         </FormItem>
                     </Form>
+                </div>
             </Modal>
         );
     }

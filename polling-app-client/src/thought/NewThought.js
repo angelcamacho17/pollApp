@@ -52,7 +52,7 @@ class NewThought extends Component {
 
         createThought(thoughtData)
             .then(response => {
-                let newP = ReactDOM.render(<ThoughtList />,document.getElementById('thoughtList') );
+                this.props.history.push("/");
             }).catch(error => {
             if(error.status === 401) {
                 this.props.handleLogout('/login', 'error', 'You have been logged out. Please login create thought.');

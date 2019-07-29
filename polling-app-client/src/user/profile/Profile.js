@@ -86,7 +86,7 @@ class Profile extends Component {
                         <Layout className="app-container">
                         <ProfileHeader isAuthenticated={this.state.isAuthenticated} 
                             currentUser={this.state.user} 
-                            onLogout={this.handleLogout} />
+                            onLogout={this.handleLogout} {...this.props} />
                         <Content className="app-content">
                             
                             <div className="user-details">

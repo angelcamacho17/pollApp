@@ -36,12 +36,14 @@ class NewThought extends Component {
         this.setState({
             visible: false,
         });
+        this.props.unmountMe();
     }
 
     handleCancel(){
         this.setState({
             visible: false,
         });
+        this.props.unmountMe();
     }
 
     handleSubmit(event) {
@@ -52,7 +54,10 @@ class NewThought extends Component {
 
         createThought(thoughtData)
             .then(response => {
-                this.props.history.push("/");
+                notification.success({
+                    message: 'New Thought',
+                    description: "The thought was successfully created",
+                });
             }).catch(error => {
             if(error.status === 401) {
                 this.props.handleLogout('/login', 'error', 'You have been logged out. Please login create thought.');

@@ -14,27 +14,50 @@ class ProfileHeader extends Component {
     constructor(props){
         super(props);
         this.state={
-            newPoll:true,
+            newPoll:false,
             newThought:false
         }
         this.handleMenuClick = this.handleMenuClick.bind(this);
+        this.handlePollUnmount = this.handlePollUnmount.bind(this);
+        this.handleThoughtUnmount = this.handleThoughtUnmount.bind(this);
+    }
+
+    handlePollUnmount(){
+        this.setState({
+            newPoll: false,
+        });
+        console.log(this.props);
+        this.props.refreshThis();
+    }
+    handleThoughtUnmount(){
+        this.setState({
+            newThought: false,
+        });
+        this.props.refreshThis();
     }
 
     handleMenuClick({ key }) {
+        console.log(key);
         if(key === "newPoll") {
-            let newP = ReactDOM.render(<NewPoll {...this.props}/>,document.getElementById('dumm') );
+            this.setState({
+                newPoll: true,
+            });
         }
         if(key === "newThought") {
-            let newT = ReactDOM.render(<NewThought {...this.props}/>,document.getElementById('dumm2') );
+            this.setState({
+                newThought: true,
+            });
         }
 
+        this.render();
     }
 
     render() {
+        console.log("poll:"+this.state.newPoll+"tho:"+this.state.newThought);
         return (
             <Header width={200} style={{ background: '#fff' }}>
-                <div id={"dumm"}></div>
-                <div id={"dumm2"}></div>
+                {this.state.newPoll?<NewPoll unmountMe={this.handlePollUnmount} {...this.props}/>:null}
+                {this.state.newThought?<NewThought unmountMe={this.handleThoughtUnmount} {...this.props}/>:null}
                 <Menu
                     className="app-menu"
                     onClick={this.handleMenuClick}

@@ -14,7 +14,7 @@ class NewPoll extends Component {
             question: {
                 text: ''
             },
-            visible:false,
+            visible:true,
             choices: [{
                 text: ''
             }, {
@@ -39,7 +39,6 @@ class NewPoll extends Component {
         this.handleOk = this.handleOk.bind(this);
         this.handleCancel = this.handleCancel.bind(this);
     }
-
     showModal(){
         this.setState({
             visible: true,
@@ -50,12 +49,15 @@ class NewPoll extends Component {
         this.setState({
             visible: false,
         });
+        this.props.unmountMe();
+
     }
 
     handleCancel(){
         this.setState({
             visible: false,
         });
+        this.props.unmountMe();
     }
 
     addChoice(event) {
@@ -86,7 +88,10 @@ class NewPoll extends Component {
 
         createPoll(pollData)
         .then(response => {
-            this.props.history.push("/polls");
+            notification.success({
+                message: 'New Poll',
+                description: "The poll was successfully created",
+            });
         }).catch(error => {
             if(error.status === 401) {
                 this.props.handleLogout('/login', 'error', 'You have been logged out. Please login create poll.');    
@@ -197,7 +202,7 @@ class NewPoll extends Component {
     }
 
     componentDidMount() {
-        this.showModal();
+        //this.showModal();
     }
 
     render() {

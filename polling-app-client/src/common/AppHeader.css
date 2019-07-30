@@ -20,6 +20,11 @@
     z-index: 10;
     padding: 0;
   }
+
+ .app-sidebar{
+  position: fixed;
+  padding: 0;
+}
   
   .app-menu {
     float: right;

@@ -6,7 +6,7 @@ import NewThought from '../../thought/NewThought';
 import {
     Link
 } from 'react-router-dom';
-import { Layout, Menu, Icon} from 'antd';
+import { Layout, Menu, Icon, Button} from 'antd';
 const { SubMenu } = Menu;
 const { Header } = Layout;
 
@@ -14,30 +14,36 @@ class ProfileHeader extends Component {
     constructor(props){
         super(props);
         this.state={
+            theme:'dark',
             newPoll:false,
-            newThought:false
+            newThought:false,
+            collapsed: false,
         }
         this.handleMenuClick = this.handleMenuClick.bind(this);
         this.handlePollUnmount = this.handlePollUnmount.bind(this);
         this.handleThoughtUnmount = this.handleThoughtUnmount.bind(this);
+        this.toggleCollapsed = this.toggleCollapsed.bind(this);
     }
+
+    toggleCollapsed() {
+        this.setState({
+            collapsed: !this.state.collapsed,
+        });
+    };
 
     handlePollUnmount(){
         this.setState({
             newPoll: false,
         });
         console.log(this.props);
-        this.props.refreshThis();
     }
     handleThoughtUnmount(){
         this.setState({
             newThought: false,
         });
-        this.props.refreshThis();
     }
 
     handleMenuClick({ key }) {
-        console.log(key);
         if(key === "newPoll") {
             this.setState({
                 newPoll: true,
@@ -55,10 +61,32 @@ class ProfileHeader extends Component {
     render() {
         console.log("poll:"+this.state.newPoll+"tho:"+this.state.newThought);
         return (
-            <Header width={200} style={{ background: '#fff' }}>
+            <div>
                 {this.state.newPoll?<NewPoll unmountMe={this.handlePollUnmount} {...this.props}/>:null}
                 {this.state.newThought?<NewThought unmountMe={this.handleThoughtUnmount} {...this.props}/>:null}
                 <Menu
+                    mode="inline"
+                    onClick={this.handleMenuClick}
+                    inlineCollapsed={this.state.collapsed}
+                >
+                    <Menu.Item key="newPoll">
+                        <Icon type="pie-chart" />
+                        <span>New Poll</span>
+                    </Menu.Item>
+                    <Menu.Item key="newThought">
+                        <Icon type="bulb" />
+                        <span>New Thought</span>
+                    </Menu.Item>
+                </Menu>
+            </div>
+
+            /*<Header width={200} style={{ background: '#fff' }}>
+
+                <Menu
+                    theme={this.state.theme}
+                    style={{ width: 256 }}
+                    selectedKeys={[this.state.current]}
+                    mode="inline"
                     className="app-menu"
                     onClick={this.handleMenuClick}
                     mode="inline"
@@ -78,7 +106,7 @@ class ProfileHeader extends Component {
                         <Menu.Item  key="newThought">New Thought</Menu.Item>
                     </SubMenu>
                 </Menu>
-          </Header>
+          </Header>*/
         );
     }
 }

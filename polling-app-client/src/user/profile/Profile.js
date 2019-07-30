@@ -11,7 +11,7 @@ import NotFound from '../../common/NotFound';
 import ServerError from '../../common/ServerError';
 import ProfileHeader from './ProfileHeader';
 
-const { Content } = Layout;
+const { Content,Sider } = Layout;
 
 const TabPane = Tabs.TabPane;
 
@@ -23,11 +23,6 @@ class Profile extends Component {
             isLoading: false
         }
         this.loadUserProfile = this.loadUserProfile.bind(this);
-        this.refreshThisPage = this.refreshThisPage.bind(this);
-    }
-
-    refreshThisPage(){
-        this.shouldComponentUpdate(this.props,this.state)
     }
 
     loadUserProfile(username) {
@@ -89,11 +84,12 @@ class Profile extends Component {
                 { 
                     this.state.user ? (
                         <Layout className="app-container">
-                        <ProfileHeader isAuthenticated={this.state.isAuthenticated} 
+                            <Sider >
+                            <ProfileHeader isAuthenticated={this.state.isAuthenticated}
                             currentUser={this.state.user} 
-                            onLogout={this.handleLogout} refreshThis={this.refreshThisPage} {...this.props} />
-                        <Content className="app-content">
-                            
+                            onLogout={this.handleLogout} {...this.props} />
+                            </Sider>
+                        <Content >
                             <div className="user-details">
                                 <div className="user-avatar">
                                     <Avatar className="user-avatar-circle" style={{ backgroundColor: getAvatarColor(this.state.user.name)}}>

@@ -3,9 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="952fc9da-51a1-4867-9b74-f111336d0e92" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../polling-app-client/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../polling-app-client/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../polling-app-client/src/common/AppHeader.css" beforeDir="false" afterPath="$PROJECT_DIR$/../polling-app-client/src/common/AppHeader.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../polling-app-client/src/user/profile/Profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/../polling-app-client/src/user/profile/Profile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../polling-app-client/src/user/profile/ProfileHeader.js" beforeDir="false" afterPath="$PROJECT_DIR$/../polling-app-client/src/user/profile/ProfileHeader.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/polls/target/" />
@@ -113,8 +111,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/polls/src/main/java/com/example/polls/payload/PollResponse.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="338">
-              <caret line="82" column="45" lean-forward="true" selection-start-line="82" selection-start-column="45" selection-end-line="82" selection-end-column="45" />
+            <state relative-caret-position="208">
+              <caret line="88" column="4" selection-start-line="88" selection-start-column="4" selection-end-line="88" selection-end-column="4" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#547#548#0" expanded="true" />
@@ -297,24 +295,6 @@
               <item name="polls" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="polls" type="462c0819:PsiDirectoryNode" />
-              <item name="payload" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="polls" type="b2602c69:ProjectViewProjectNode" />
-              <item name="polls" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="polls" type="462c0819:PsiDirectoryNode" />
-              <item name="util" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="polls" type="b2602c69:ProjectViewProjectNode" />
-              <item name="polls" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="resources" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -384,16 +364,15 @@
       <workItem from="1563967764355" duration="16146000" />
       <workItem from="1564052984749" duration="5188000" />
       <workItem from="1564400017380" duration="3197000" />
-      <workItem from="1564489605274" duration="2185000" />
+      <workItem from="1564489605274" duration="2558000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="36322000" />
+    <option name="totallyTimeSpent" value="36695000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2195946" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -411,7 +390,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Spring" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="8" />
+      <window_info anchor="bottom" id="Terminal" order="8" visible="true" weight="0.32991204" />
       <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="bottom" id="Java Enterprise" order="11" />
@@ -1040,8 +1019,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/polls/src/main/java/com/example/polls/payload/PollResponse.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="338">
-          <caret line="82" column="45" lean-forward="true" selection-start-line="82" selection-start-column="45" selection-end-line="82" selection-end-column="45" />
+        <state relative-caret-position="208">
+          <caret line="88" column="4" selection-start-line="88" selection-start-column="4" selection-end-line="88" selection-end-column="4" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#547#548#0" expanded="true" />

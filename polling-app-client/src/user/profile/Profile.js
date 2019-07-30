@@ -11,7 +11,7 @@ import NotFound from '../../common/NotFound';
 import ServerError from '../../common/ServerError';
 import ProfileHeader from './ProfileHeader';
 
-const { Content,Sider } = Layout;
+const { Content, Sider, Drawer } = Layout;
 
 const TabPane = Tabs.TabPane;
 
@@ -84,7 +84,16 @@ class Profile extends Component {
                 { 
                     this.state.user ? (
                         <Layout className="app-container">
-                            <Sider >
+                            <Sider breakpoint="xs"
+                                   collapsedWidth="5px"
+                                   onBreakpoint={broken => {
+                                       console.log(broken);
+                                   }}
+                                   onCollapse={(collapsed, type) => {
+                                       console.log(collapsed, type);
+                                   }}
+
+                            >
                             <ProfileHeader isAuthenticated={this.state.isAuthenticated}
                             currentUser={this.state.user} 
                             onLogout={this.handleLogout} {...this.props} />

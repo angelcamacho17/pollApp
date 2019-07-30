@@ -18,6 +18,7 @@ class ProfileHeader extends Component {
             newPoll:false,
             newThought:false,
             collapsed: false,
+            selectedKey:''
         }
         this.handleMenuClick = this.handleMenuClick.bind(this);
         this.handlePollUnmount = this.handlePollUnmount.bind(this);
@@ -34,12 +35,14 @@ class ProfileHeader extends Component {
     handlePollUnmount(){
         this.setState({
             newPoll: false,
+            selectedKey: ''
         });
         console.log(this.props);
     }
     handleThoughtUnmount(){
         this.setState({
             newThought: false,
+            selectedKey: ''
         });
     }
 
@@ -47,11 +50,13 @@ class ProfileHeader extends Component {
         if(key === "newPoll") {
             this.setState({
                 newPoll: true,
+                selectedKey: key
             });
         }
         if(key === "newThought") {
             this.setState({
                 newThought: true,
+                selectedKey: key
             });
         }
 
@@ -59,7 +64,6 @@ class ProfileHeader extends Component {
     }
 
     render() {
-        console.log("poll:"+this.state.newPoll+"tho:"+this.state.newThought);
         return (
             <div>
                 {this.state.newPoll?<NewPoll unmountMe={this.handlePollUnmount} {...this.props}/>:null}
@@ -68,6 +72,7 @@ class ProfileHeader extends Component {
                     mode="inline"
                     onClick={this.handleMenuClick}
                     inlineCollapsed={this.state.collapsed}
+                    selectedKeys={this.state.selectedKey}
                 >
                     <Menu.Item key="newPoll">
                         <Icon type="pie-chart" />

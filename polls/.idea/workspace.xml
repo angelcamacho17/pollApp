@@ -6,7 +6,7 @@
       <change beforePath="$PROJECT_DIR$/../polling-app-client/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../polling-app-client/public/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../polling-app-client/src/common/AppHeader.js" beforeDir="false" afterPath="$PROJECT_DIR$/../polling-app-client/src/common/AppHeader.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../polling-app-client/src/user/profile/Profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/../polling-app-client/src/user/profile/Profile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../polling-app-client/src/user/profile/ProfileHeader.js" beforeDir="false" afterPath="$PROJECT_DIR$/../polling-app-client/src/user/profile/ProfileHeader.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/polls/target/" />
@@ -401,12 +401,12 @@
       <workItem from="1564052984749" duration="5188000" />
       <workItem from="1564400017380" duration="3197000" />
       <workItem from="1564489605274" duration="3441000" />
-      <workItem from="1564513566301" duration="1266000" />
+      <workItem from="1564513566301" duration="1731000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="38844000" />
+    <option name="totallyTimeSpent" value="39309000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />

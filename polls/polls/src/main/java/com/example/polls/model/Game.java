@@ -13,34 +13,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "polls")
-public class Poll extends UserDateAudit {
+@Table(name = "games")
+public class Game extends UserDateAudit {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
     @NotBlank
     @Size(max = 140)
-    private String question;
+    private String title;
     
     @OneToMany(
-            mappedBy = "poll",
+            mappedBy = "game",
             cascade = CascadeType.ALL,
             fetch = FetchType.EAGER,
             orphanRemoval = true
     )
-    @Size(min = 2, max = 6)
+    @Size(min = 2, max = 7)
     @Fetch(FetchMode.SELECT)
     @BatchSize(size = 30)
-    private List<Choice> choices = new ArrayList<>();
+    private List<Poll> polls = new ArrayList<>();
     
     @NotNull
     private Instant expirationDateTime;
-    
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "game_id", nullable = false)
-    
-    private Game game;
     
     public Long getId() {
         return id;
@@ -50,20 +45,20 @@ public class Poll extends UserDateAudit {
         this.id = id;
     }
     
-    public String getQuestion() {
-        return question;
+    public String getTitle() {
+        return title;
     }
     
-    public void setQuestion(String question) {
-        this.question = question;
+    public void setTitle(String title) {
+        this.title = title;
     }
     
-    public List<Choice> getChoices() {
-        return choices;
+    public List<Poll> getPolls() {
+        return polls;
     }
     
-    public void setChoices(List<Choice> choices) {
-        this.choices = choices;
+    public void setPolls(List<Poll> polls) {
+        this.polls = polls;
     }
     
     public Instant getExpirationDateTime() {
@@ -74,21 +69,4 @@ public class Poll extends UserDateAudit {
         this.expirationDateTime = expirationDateTime;
     }
     
-    public void addChoice(Choice choice) {
-        choices.add(choice);
-        choice.setPoll(this);
-    }
-    
-    public void removeChoice(Choice choice) {
-        choices.remove(choice);
-        choice.setPoll(null);
-    }
-    
-    public Game getGame() {
-        return game;
-    }
-    
-    public void setGame(Game game) {
-        this.game = game;
-    }
 }
